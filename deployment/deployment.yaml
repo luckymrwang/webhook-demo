@@ -17,7 +17,7 @@ spec:
       containers:
         - name: admission-webhook-example
           image: test/admission-webhook-example:v1
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           args:
             - -tlsCertPath=/etc/webhook/certs/cert.pem
             - -tlsKeyPath=/etc/webhook/certs/key.pem

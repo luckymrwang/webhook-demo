@@ -1,16 +1,19 @@
-FROM golang:1.11-alpine3.9
+FROM golang:1.14
 
-WORKDIR /go/src/github.com/yaoice/webhook-demo
+WORKDIR /go/src/webhook-demo
 
-COPY . /go/src/github.com/yaoice/webhook-demo
+COPY . /go/src/webhook-demo
 
-ENV CGO_ENABLED 0
+ENV CGO_ENABLED 0 \
+    GO111MODULE=on \
+    GOSUMDB=off \
+    GOPROXY=https://goproxy.cn
 
 RUN  go build -o /go/bin/webhook-demo cmd/main.go
 
-FROM alpine:3.9
+FROM alpine
 
-LABEL maintainer="iceyao"
+LABEL maintainer="spider"
 
 # copy the go binaries from the building stage
 COPY --from=0 /go/bin /go/bin

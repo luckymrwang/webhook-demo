@@ -3,7 +3,7 @@ package main
 import (
     "flag"
     "github.com/golang/glog"
-    "github.com/yaoice/webhook-demo/pkg/webhook"
+    "github.com/luckymrwang/webhook-demo/pkg/webhook"
     "os"
     "os/signal"
     "syscall"
@@ -18,7 +18,7 @@ func main() {
     // init webhook api
     ws, err := webhook.NewWebhookServer(webHook)
     if err != nil {
-        panic(err)
+        glog.Errorf("Failed to load configuration: %v", err)
     }
 
     // start webhook server in new routine

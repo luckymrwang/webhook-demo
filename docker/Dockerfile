@@ -4,10 +4,7 @@ WORKDIR /go/src/webhook-demo
 
 COPY . /go/src/webhook-demo
 
-ENV CGO_ENABLED 0 \
-    GO111MODULE=on \
-    GOSUMDB=off \
-    GOPROXY=https://goproxy.cn
+ENV CGO_ENABLED 0
 
 RUN  go build -o /go/bin/webhook-demo cmd/main.go
 
